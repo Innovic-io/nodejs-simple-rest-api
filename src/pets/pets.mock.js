@@ -15,7 +15,22 @@ const pets = [
                 "name": "string"
             }
         ],
-        "status": "available"
+        "status": "available",
+        "examinations": [
+            {
+                id: 1314544864,
+                scheduled: 'date',
+                notes: 'text',
+                report: 'text',
+                finished: 'time'
+            },
+            {
+                id: 1551547864,
+                scheduled: 'date',
+                notes: 'text'
+            }
+        ],
+        "owner": "schrimsher"
     },
     {
         "id": 1622147642,
@@ -83,7 +98,19 @@ const pets = [
                 "name": "string"
             }
         ],
-        "status": "available"
+        "status": "available",
+        "examinations": [
+            {
+                id: 4425242564,
+                date: 'date ',
+                details: 'text '
+            },
+            {
+                id: 4410242560,
+                date: 'another examination',
+                details: 'something'
+            }
+        ]
     },
     {
         "id": 1622147648,
