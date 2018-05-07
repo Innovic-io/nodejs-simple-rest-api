@@ -1,0 +1,22 @@
+{
+  "name": "simple-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.16.3",
+    "body-parser": "^1.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.4",
+    "prettier": "1.12.1",
+    "prettierrc": "0.0.0-5"
+  },
+  "scripts": {
+    "test": "node ./**/*.spec.js",
+    "prettier": "prettier",
+    "start": "nodemon src/app.js"
+  },
+  "author": "Ivana Fustar",
+  "license": "ISC"
+}
