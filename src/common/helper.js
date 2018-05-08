@@ -11,8 +11,8 @@ function validateDTO(reqBody, properties) {
   const requestProperties = Object.keys(reqBody).map(value => value.concat("?"));
 
   for (let element of requestProperties) {
-    for(let item of properties) {
-      if(item.includes('?')) {
+    for (let item of properties) {
+      if (item.includes("?")) {
         if (!properties.find(value => value == element)) {
           return false;
         }
