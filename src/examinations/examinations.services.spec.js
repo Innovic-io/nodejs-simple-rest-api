@@ -60,7 +60,7 @@ assert.deepStrictEqual(actual, expected);
 
 const newExamination = {
   "scheduled": "12.12.2020.",
-  "notes": "checked pet",
+  "notes": "checked pet"
 };
 const createExamination = examinations.createSingleExamination(1622147641, newExamination);
 
@@ -75,5 +75,5 @@ newExamination.id = 123;
 assert.deepStrictEqual(newExamination, examinations.createSingleExamination(1622147641, newExamination));
 
 expectedPet.examinations[0].report = "unfazed";
-assert.equal(examinations.updateReport(1622147641, 1551547864, {report: "unfazed"}).report, expectedPet.examinations[0].report);
+assert.equal(examinations.updateReport(1622147641, 1551547864, { report: "unfazed" }).report, expectedPet.examinations[0].report);
 
