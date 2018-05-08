@@ -17,9 +17,18 @@ Router.get("/:petID/examinations", function(req, res) {
 });
 
 Router.delete("/:petID/examinations/:eID", function(req, res) {
+  try {
 
-  const item = examination.deleteSingleExamination(req.params.petID, req.params.eID);
-  res.status(200).json(item);
+    const item = examination.deleteSingleExamination(req.params.petID, req.params.eID);
+    return res.status(200).json(item);
+
+  } catch (err) {
+
+    return res.status(400).json({
+      error: err.message
+    });
+  }
+
 });
 
 Router.post("/:petID/examinations", function(req, res) {
@@ -32,8 +41,18 @@ Router.post("/:petID/examinations", function(req, res) {
     });
   }
 
-  const newExamination = examination.createSingleExamination(req.params.petID, req.body);
-  res.status(200).json(newExamination);
+  try {
+
+    const newExamination = examination.createSingleExamination(req.params.petID, req.body);
+    return res.status(200).json(newExamination);
+
+  } catch (err) {
+
+    return res.status(400).json({
+      message: err.message
+    });
+  }
+
 });
 
 Router.put("/:petID/examinations/:eID", function(req, res) {
