@@ -42,6 +42,7 @@ const pet1 = {
   ],
   "status": "available"
 };
+
 const generatedID = helper.generateID();
 const petWithID = Object.assign({}, pet1, {
   id: generatedID

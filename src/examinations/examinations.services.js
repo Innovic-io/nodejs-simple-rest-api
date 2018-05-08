@@ -17,7 +17,7 @@ class Examination {
     const examination = pet.examinations.find(value => value.id === parseInt(eId));
 
     if (!examination) {
-      throw new Error('Examination does not exist.')
+      throw new Error("Examination does not exist.");
     }
 
     return examination;
@@ -44,7 +44,7 @@ class Examination {
     const indexOfExamination = pet.examinations.findIndex(value => value.id === parseInt(eID));
 
     if (indexOfExamination === -1) {
-      throw new Error('Examination does not exist.')
+      throw new Error("Examination does not exist.");
     }
 
     return pet.examinations.splice(indexOfExamination, 1);
@@ -60,8 +60,8 @@ class Examination {
 
     let pet = petService.getSingle(petID);
 
-    if(!pet) {
-      throw new Error('Pet does not exist');
+    if (!pet) {
+      throw new Error("Pet does not exist");
     }
 
     const createExamination = Object.assign({}, newExamination, {
@@ -76,7 +76,7 @@ class Examination {
 
     pet.examinations.push(createExamination);
 
-    return newExamination;
+    return createExamination;
   }
 
   /**
@@ -99,7 +99,7 @@ class Examination {
     let pet = petService.getSingle(petID);
     pet.examinations.push(examination);
 
-    return newReport;
+    return examination;
   }
 }
 

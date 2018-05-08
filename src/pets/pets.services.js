@@ -12,8 +12,8 @@ class PetService {
 
     const petIndex = pets.findIndex(value => value.id === parseInt(petId));
 
-    if(petIndex === -1) {
-      throw new Error('Pet does not exist.');
+    if (petIndex === -1) {
+      throw new Error("Pet does not exist.");
     }
 
     return pets.splice(petIndex, 1);
@@ -45,7 +45,7 @@ class PetService {
     let newPet = this.getSingle(id);
 
     if (!newPet) {
-      throw new Error('Pet does not exist.');
+      throw new Error("Pet does not exist.");
     }
 
     newPet = Object.assign({}, newPet, {
