@@ -7,13 +7,13 @@ const examination = new Examination();
 Router.get("/:petID/examinations/:eID", function(req, res) {
 
   const item = examination.getSingleExamination(req.params.petID, req.params.eID);
-  res.status(200).json(item);
+  return res.status(200).json(item);
 });
 
 Router.get("/:petID/examinations", function(req, res) {
 
   const item = examination.getAllExaminationsByPet(req.params.petID);
-  res.status(200).json(item);
+  return res.status(200).json(item);
 });
 
 Router.delete("/:petID/examinations/:eID", function(req, res) {
@@ -65,7 +65,7 @@ Router.put("/:petID/examinations/:eID", function(req, res) {
     });
   }
   const report = examination.updateReport(req.params.petID, req.params.eID, req.body);
-  res.status(200).json(report);
+  return res.status(200).json(report);
 });
 
 module.exports = {

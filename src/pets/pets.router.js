@@ -7,7 +7,7 @@ const petService = new PetService();
 
 Router.get("/", function(req, res) {
 
-  res.json(pets.pets);
+  return res.json(pets.pets);
 });
 
 Router.get("/:id", function(req, res) {

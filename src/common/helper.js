@@ -2,21 +2,17 @@
 * Checks if user-input data matches the expected properties.
 * */
 function validateDTO(reqBody, properties) {
-  for (let element of properties) {
-    if (!reqBody.hasOwnProperty(element) && !element.includes("?")) {
+  const requestProperties = Object.keys(reqBody);
+
+  for (const property of requestProperties) {
+    if (properties.indexOf(property) === -1 && !property.includes("?")) {
       return false;
     }
   }
 
-  const requestProperties = Object.keys(reqBody).map(value => value.concat("?"));
-
-  for (let element of requestProperties) {
-    for (let item of properties) {
-      if (item.includes("?")) {
-        if (!properties.find(value => value == element)) {
-          return false;
-        }
-      }
+  for (const element of properties) {
+    if (requestProperties.indexOf(element) === -1 && !element.includes("?")) {
+      return false;
     }
   }
 
@@ -24,7 +20,7 @@ function validateDTO(reqBody, properties) {
 }
 
 function generateID() {
-  return parseInt(Math.random() * 1000000000);
+  return Math.random() * 1000000000;
 }
 
 module.exports = {
