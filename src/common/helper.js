@@ -2,34 +2,38 @@
 * Checks if user-input data matches the expected properties.
 * */
 function validateDTO(reqBody, properties) {
+
+  // check if object is not empty
   const objectKeys = Object.keys(reqBody);
 
-  /**
-   * Array properties contains all the properties that are allowed to make change in pet data. Properties that contain '?'
-   * are not required. Array objectKeys has to contain all the required properties, or else the input data is invalid.
-   */
-  for (const element of properties) {
-    if (objectKeys.indexOf(element) === -1 && !element.includes("?")) { //if the element does not exist and does not contain '?'
+  if (!objectKeys.length ) {
+    return false;
+  }
+
+  // check if required fields are passed
+  const requiredFields = properties.filter(value => !value.includes('?'));
+
+  for (const required of requiredFields) {
+    if (objectKeys.indexOf(required) === -1) {
       return false;
     }
   }
 
-  /**
-   * Checking if request body contains any fields that are not expected. Returns error if it does.
-   */
-  const flattened = properties.map(value => value.replace("?", ""));
+  // Checking if request body contains any fields that are not expected. Returns error if it does.
+  const allFields = properties.map(value => value.replace("?", ""));
 
   for (const property of objectKeys) {
-    if (flattened.indexOf(property) === -1) {
+    if (allFields.indexOf(property) === -1) {
       return false;
     }
+
   }
 
   return true;
 }
 
 function generateID() {
-  return Math.random() * 1000000000;
+  return Math.round(Math.random() * 10000000000);
 }
 
 module.exports = {

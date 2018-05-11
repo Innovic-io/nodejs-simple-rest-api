@@ -61,7 +61,9 @@ Router.post("/", function(req, res) {
     const pet = petService.create(req.body);
 
     return res.status(201).json(pet);
+
   } catch (e) {
+
     return res.status(400).json({
       message: e.message
     });
@@ -79,7 +81,6 @@ Router.put("/:id", function(req, res) {
     });
   }
 
-
   try {
 
     const item = petService.updatePet(req.params.id, req.body);
@@ -92,7 +93,6 @@ Router.put("/:id", function(req, res) {
       message: err.message
     });
   }
-
 
 });
 

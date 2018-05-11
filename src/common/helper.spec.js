@@ -20,8 +20,23 @@ const petExample = {
   "status": "available"
 };
 
-const properties = ["id?", "category?", "name", "photoUrls?", "tags?", "status", "examinations?"];
+const updatePet = {
+  name: 'golden fish',
+  status: 'available',
+  owner: 'ivana'
+};
 
-assert.equal(helper.validateDTO(petExample, properties), true);
+const propertiesCreate = ["id?", "category?", "name", "photoUrls?", "tags?", "status", "examinations?"];
+const propertiesUpdate = ["name?", "status?", "owner?"];
+
+assert.equal(helper.validateDTO(petExample, propertiesCreate), true);
 
 assert.equal(helper.validateDTO(petExample, ["name", "status", "V"]), false);
+
+assert.equal(helper.validateDTO({report: 'report'}, ['schedule']), false);
+
+assert.equal(helper.validateDTO(petExample, propertiesUpdate), false);
+
+assert.equal(helper.validateDTO(updatePet, propertiesUpdate), true);
+
+assert.equal(helper.validateDTO({}, propertiesUpdate), false);

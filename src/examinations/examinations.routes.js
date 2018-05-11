@@ -6,20 +6,40 @@ const examination = new Examination();
 
 Router.get("/:petID/examinations/:eID", function(req, res) {
 
-  const item = examination.getSingleExamination(req.params.petID, req.params.eID);
-  return res.status(200).json(item);
+  try {
+    const item = examination.getSingleExamination(req.params.petID, req.params.eID);
+
+    return res.status(200).json(item);
+  } catch (e) {
+
+    return res.status(400).json({
+      message: e.message
+    });
+  }
+
+
 });
 
 Router.get("/:petID/examinations", function(req, res) {
+  try {
+    const item = examination.getAllExaminationsByPet(req.params.petID);
 
-  const item = examination.getAllExaminationsByPet(req.params.petID);
-  return res.status(200).json(item);
+    return res.status(200).json(item);
+
+  } catch (e) {
+
+    return res.status(400).json({
+      message: e.message
+    });
+  }
+
 });
 
 Router.delete("/:petID/examinations/:eID", function(req, res) {
   try {
 
     const item = examination.deleteSingleExamination(req.params.petID, req.params.eID);
+
     return res.status(200).json(item);
 
   } catch (err) {
@@ -64,6 +84,7 @@ Router.put("/:petID/examinations/:eID", function(req, res) {
       error: "DTO is not valid"
     });
   }
+
   try {
     const report = examination.updateReport(req.params.petID, req.params.eID, req.body);
 

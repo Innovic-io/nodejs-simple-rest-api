@@ -63,6 +63,9 @@ class Examination {
     if (!pet) {
       throw new Error("Pet does not exist");
     }
+    if(pet.examinations.find(value => value.id === newExamination.id)) {
+      throw new Error("Examination with this ID already exists.")
+    }
 
     const createExamination = Object.assign({}, newExamination, {
       id: newExamination.id || generateID(),
@@ -70,7 +73,7 @@ class Examination {
       notes: newExamination.notes
     });
 
-    if (!pet.hasOwnProperty("examinations")) {
+    if (!pet.hasOwnProperty('examinations')) {
       pet.examinations = [];
     }
 
