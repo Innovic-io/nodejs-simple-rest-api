@@ -56,10 +56,16 @@ Router.post("/", function(req, res) {
       error: "DTO is not valid"
     });
   }
+  try {
 
-  const pet = petService.create(req.body);
+    const pet = petService.create(req.body);
 
-  return res.status(201).json(pet);
+    return res.status(201).json(pet);
+  } catch (e) {
+    return res.status(400).json({
+      message: e.message
+    });
+  }
 });
 
 Router.put("/:id", function(req, res) {

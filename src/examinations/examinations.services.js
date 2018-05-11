@@ -90,6 +90,10 @@ class Examination {
 
     let examination = this.getSingleExamination(petID, eID);
 
+    if(examination.hasOwnProperty('report')) {
+      throw new Error('Pet examination is already updated.')
+    }
+
     examination = Object.assign({}, examination, {
       report: newReport.report,
       finished: new Date().toLocaleDateString()

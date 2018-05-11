@@ -64,8 +64,17 @@ Router.put("/:petID/examinations/:eID", function(req, res) {
       error: "DTO is not valid"
     });
   }
-  const report = examination.updateReport(req.params.petID, req.params.eID, req.body);
-  return res.status(200).json(report);
+  try {
+    const report = examination.updateReport(req.params.petID, req.params.eID, req.body);
+
+    return res.status(200).json(report);
+  } catch (e) {
+
+    return res.status(400).json({
+      message: e.message
+    });
+  }
+
 });
 
 module.exports = {
