@@ -1,5 +1,5 @@
-//http://localhost:3000/pets
-//REST stands for Representational State Transfer
+// http://localhost:3000/pets
+// REST stands for Representational State Transfer
 
 const express = require('express');
 const bodyParser = require('body-parser');

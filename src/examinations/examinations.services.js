@@ -1,10 +1,9 @@
-const { PetService } = require("../pets/pets.services");
-const { generateID } = require("../common/helper");
+const { PetService } = require('../pets/pets.services');
+const { generateID } = require('../common/helper');
 
 const petService = new PetService();
 
 class Examination {
-
   /**
    * get/pets/petID/examinations/examinationID
    * @param petID
@@ -12,12 +11,11 @@ class Examination {
    * @returns {*}
    */
   getSingleExamination(petID, eId) {
-
     const pet = petService.getSingle(petID);
     const examination = pet.examinations.find(value => value.id === parseInt(eId));
 
     if (!examination) {
-      throw new Error("Examination does not exist.");
+      throw new Error('Examination does not exist.');
     }
 
     return examination;
@@ -39,12 +37,11 @@ class Examination {
    * @returns {*[]}
    */
   deleteSingleExamination(petID, eID) {
-
     const pet = petService.getSingle(petID);
     const indexOfExamination = pet.examinations.findIndex(value => value.id === parseInt(eID));
 
     if (indexOfExamination === -1) {
-      throw new Error("Examination does not exist.");
+      throw new Error('Examination does not exist.');
     }
 
     return pet.examinations.splice(indexOfExamination, 1);
@@ -57,20 +54,19 @@ class Examination {
    * @returns {*}
    */
   createSingleExamination(petID, newExamination) {
-
-    let pet = petService.getSingle(petID);
+    const pet = petService.getSingle(petID);
 
     if (!pet) {
-      throw new Error("Pet does not exist");
+      throw new Error('Pet does not exist');
     }
-    if(pet.examinations.find(value => value.id === newExamination.id)) {
-      throw new Error("Examination with this ID already exists.")
+    if (pet.examinations.find(value => value.id === newExamination.id)) {
+      throw new Error('Examination with this ID already exists.');
     }
 
     const createExamination = Object.assign({}, newExamination, {
       id: newExamination.id || generateID(),
       scheduled: newExamination.scheduled,
-      notes: newExamination.notes
+      notes: newExamination.notes,
     });
 
     if (!pet.hasOwnProperty('examinations')) {
@@ -90,20 +86,19 @@ class Examination {
    * @returns {*}
    */
   updateReport(petID, eID, newReport) {
-
     let examination = this.getSingleExamination(petID, eID);
 
-    if(examination.hasOwnProperty('report')) {
-      throw new Error('Pet examination is already updated.')
+    if (examination.hasOwnProperty('report')) {
+      throw new Error('Pet examination is already updated.');
     }
 
     examination = Object.assign({}, examination, {
       report: newReport.report,
-      finished: new Date().toLocaleDateString()
+      finished: new Date().toLocaleDateString(),
     });
 
     this.deleteSingleExamination(petID, eID);
-    let pet = petService.getSingle(petID);
+    const pet = petService.getSingle(petID);
     pet.examinations.push(examination);
 
     return examination;
@@ -111,5 +106,5 @@ class Examination {
 }
 
 module.exports = {
-  Examination
+  Examination,
 };

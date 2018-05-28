@@ -1,7 +1,7 @@
-const helper = require("../common/helper");
-const assert = require("assert");
-const { pets } = require("./pets.mock");
-const { PetService } = require("./pets.services");
+const helper = require('../common/helper');
+const assert = require('assert');
+const { pets } = require('./pets.mock');
+const { PetService } = require('./pets.services');
 
 const petService = new PetService();
 
@@ -26,26 +26,26 @@ function checkIfDeletes(id) {
 checkIfDeletes(id);
 
 const pet1 = {
-  "category": {
-    "id": 0,
-    "name": "string"
+  category: {
+    id: 0,
+    name: 'string',
   },
-  "name": "puppet",
-  "photoUrls": [
-    "string"
+  name: 'puppet',
+  photoUrls: [
+    'string',
   ],
-  "tags": [
+  tags: [
     {
-      "id": 0,
-      "name": "string"
-    }
+      id: 0,
+      name: 'string',
+    },
   ],
-  "status": "available"
+  status: 'available',
 };
 
 const generatedID = helper.generateID();
 const petWithID = Object.assign({}, pet1, {
-  id: generatedID
+  id: generatedID,
 });
 
 assert.deepEqual(petService.create(pet1).category, pet1.category);

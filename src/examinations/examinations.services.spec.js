@@ -1,42 +1,42 @@
-const assert = require("assert");
-const { Examination } = require("./examinations.services");
-const { PetService } = require("../pets/pets.services");
+const assert = require('assert');
+const { Examination } = require('./examinations.services');
+const { PetService } = require('../pets/pets.services');
 
 const examinations = new Examination();
 const petService = new PetService();
 
 const expectedPet = {
-  "id": 1622147641,
-  "category": {
-    "id": 0,
-    "name": "string"
+  id: 1622147641,
+  category: {
+    id: 0,
+    name: 'string',
   },
-  "name": "doggie",
-  "photoUrls": [
-    "string"
+  name: 'doggie',
+  photoUrls: [
+    'string',
   ],
-  "tags": [
+  tags: [
     {
-      "id": 0,
-      "name": "string"
-    }
+      id: 0,
+      name: 'string',
+    },
   ],
-  "status": "available",
-  "examinations": [
+  status: 'available',
+  examinations: [
     {
-      "id": 1314544864,
-      "scheduled": "date",
-      "notes": "text",
-      "report": "text",
-      "finished": "time"
+      id: 1314544864,
+      scheduled: 'date',
+      notes: 'text',
+      report: 'text',
+      finished: 'time',
     },
     {
-      "id": 1551547864,
-      "scheduled": "date",
-      "notes": "text"
-    }
+      id: 1551547864,
+      scheduled: 'date',
+      notes: 'text',
+    },
   ],
-  "owner": "schrimsher"
+  owner: 'schrimsher',
 };
 
 /**
@@ -49,7 +49,6 @@ assert.deepEqual(examinations.getSingleExamination(1622147641, 1314544864), expe
  */
 assert.deepEqual(examinations.getAllExaminationsByPet(1622147641), expectedPet.examinations);
 
-
 const expected = expectedPet.examinations.splice(0, 1);
 const actual = examinations.deleteSingleExamination(1622147641, 1314544864);
 
@@ -59,8 +58,8 @@ const actual = examinations.deleteSingleExamination(1622147641, 1314544864);
 assert.deepStrictEqual(actual, expected);
 
 const newExamination = {
-  "scheduled": "12.12.2020.",
-  "notes": "checked pet"
+  scheduled: '12.12.2020.',
+  notes: 'checked pet',
 };
 const createExamination = examinations.createSingleExamination(1622147641, newExamination);
 
@@ -74,6 +73,5 @@ newExamination.id = 123;
 
 assert.deepStrictEqual(newExamination, examinations.createSingleExamination(1622147641, newExamination));
 
-expectedPet.examinations[0].report = "unfazed";
-assert.equal(examinations.updateReport(1622147641, 1551547864, { report: "unfazed" }).report, expectedPet.examinations[0].report);
-
+expectedPet.examinations[0].report = 'unfazed';
+assert.equal(examinations.updateReport(1622147641, 1551547864, { report: 'unfazed' }).report, expectedPet.examinations[0].report);

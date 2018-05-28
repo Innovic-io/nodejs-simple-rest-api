@@ -2,11 +2,10 @@
 * Checks if user-input data matches the expected properties.
 * */
 function validateDTO(reqBody, properties) {
-
   // check if object is not empty
   const objectKeys = Object.keys(reqBody);
 
-  if (!objectKeys.length ) {
+  if (!objectKeys.length) {
     return false;
   }
 
@@ -20,13 +19,12 @@ function validateDTO(reqBody, properties) {
   }
 
   // Checking if request body contains any fields that are not expected. Returns error if it does.
-  const allFields = properties.map(value => value.replace("?", ""));
+  const allFields = properties.map(value => value.replace('?', ''));
 
   for (const property of objectKeys) {
     if (allFields.indexOf(property) === -1) {
       return false;
     }
-
   }
 
   return true;
@@ -38,5 +36,5 @@ function generateID() {
 
 module.exports = {
   validateDTO,
-  generateID
+  generateID,
 };
