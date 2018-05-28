@@ -22,12 +22,10 @@
     "prettierrc": "0.0.0-5"
   },
   "scripts": {
-    "test": "node ./**/*.spec.js",
-    "prettier": "prettier --find-config-path --write '{src,__{tests,mocks}__}/**/*.js'",
     "start": "nodemon src/app.js",
     "eslint": "eslint ./**/*.js",
     "format": "prettier-eslint --write 'src/**/*.js'",
-    "glob": "glob-exec --foreach './src/**/*.spec.js' -- 'node {{file}}' "
+    "test": "glob-exec --foreach './src/**/*.spec.js' -- 'node {{file}}'"
   },
   "author": "Ivana Fustar",
   "license": "ISC"
