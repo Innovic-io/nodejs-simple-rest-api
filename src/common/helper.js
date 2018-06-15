@@ -1,6 +1,7 @@
 /* DTO - data transfer object
 * Checks if user-input data matches the expected properties.
 * */
+
 function validateDTO(reqBody, properties) {
   // check if object is not empty
   const objectKeys = Object.keys(reqBody);

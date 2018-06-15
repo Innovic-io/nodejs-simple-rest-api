@@ -1,6 +1,7 @@
 const Router = require('express').Router();
 const { Examination } = require('./examinations.services');
 const { validateDTO } = require('../common/helper');
+const { validate } = require('../common/middleware');
 
 const examination = new Examination();
 
@@ -40,14 +41,15 @@ Router.delete('/:petID/examinations/:eID', (req, res) => {
   }
 });
 
-Router.post('/:petID/examinations', (req, res) => {
-  const properties = ['id?', 'scheduled', 'notes'];
+Router.post('/:petID/examinations', validate(['id?', 'scheduled', 'notes']), (req, res) => {
+  // this code is not needed because middleware function is used here for validating
+  /* const properties = ['id?', 'scheduled', 'notes'];
 
   if (!validateDTO(req.body, properties)) {
     return res.status(400).json({
       error: 'DTO is not valid',
     });
-  }
+  } */
 
   try {
     const newExamination = examination.createSingleExamination(req.params.petID, req.body);

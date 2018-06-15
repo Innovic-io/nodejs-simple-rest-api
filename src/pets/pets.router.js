@@ -1,11 +1,16 @@
-const pets = require('./pets.mock');
+const { pets } = require('./pets.mock');
 const { validateDTO } = require('../common/helper');
 const Router = require('express').Router();
 const { PetService } = require('./pets.services');
 
 const petService = new PetService();
 
-Router.get('/', (req, res) => res.json(pets.pets));
+Router.get('/', (req, res) => {
+  if(Object.keys(req.query).length) {
+    res.json(pets.filter(value => value.status === req.query.status && value.name === req.query.name));
+  }
+  res.json(pets);
+});
 
 Router.get('/:id', (req, res) => {
   try {
