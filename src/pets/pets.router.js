@@ -5,11 +5,55 @@ const { PetService } = require('./pets.services');
 
 const petService = new PetService();
 
-Router.get('/', (req, res) => {
-  if(Object.keys(req.query).length) {
-    res.json(pets.filter(value => value.status === req.query.status && value.name === req.query.name));
+
+function splitQueryIntoSortAndFilter(requestQuery) {
+  let sortKey;
+
+  if (Object.keys(requestQuery).length) {
+    if ('sort' in requestQuery) {
+      sortKey = requestQuery.sort;
+      delete requestQuery.sort;
+    }
   }
-  res.json(pets);
+
+  return [sortKey, requestQuery];
+}
+
+function filterArray(filterQuery, array) {
+  if (Object.keys(filterQuery).length) {
+    for (const key of Object.keys(filterQuery)) {
+      array = array.filter(pet => pet[key] === filterQuery[key]);
+    }
+  }
+
+  return array;
+}
+
+function sortArray(sortKey, array) {
+  if (sortKey) {
+    let asc = true;
+
+    if (sortKey[0] === '-') {
+      asc = false;
+    }
+
+    array.sort((current, next) => {
+      if (current[sortKey] >= next[sortKey]) {
+        return (asc) ? 1 : -1;
+      }
+      return (asc) ? -1 : 1;
+    });
+  }
+}
+
+Router.get('/', (req, res) => {
+
+  const [sortKey, filterQuery] = splitQueryIntoSortAndFilter(req.query);
+  const petFilter = filterArray(filterQuery, [...pets]);
+
+  sortArray(sortKey, petFilter);
+
+  return res.json(petFilter);
 });
 
 Router.get('/:id', (req, res) => {
