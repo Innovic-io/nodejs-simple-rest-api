@@ -14,6 +14,9 @@ Project uses:
 - nodemon, as development server
 - unit tests as system verification
 
+## Demo 
+http://petsy.us.openode.io/pets/
+
 ## Installation instruction
 ```npm
 npm install
@@ -37,13 +40,13 @@ npm run eslint
 ## Routes
 
 Get all pets sorted by ID and filtered by name Dog
-[GET] **http://localhost:3000/pets?sort=id&name=Dog**
+[GET] **http://petsy.us.openode.io/pets?sort=id&name=Dog**
 
 Get single pet by ID
-[GET] **http://localhost:3000/pets/1622147641**
+[GET] **http://petsy.us.openode.io/pets/1622147641**
 
 Delete single pet by ID
-[DELETE] **http://localhost:3000/pets/1622147641**
+[DELETE] **http://petsy.us.openode.io/pets/1622147641**
 
 ## Credits
 
