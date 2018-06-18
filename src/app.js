@@ -12,7 +12,5 @@ app.use(bodyParser.json());
 
 app.use('/pets', petRoutes);
 app.use('/pets', examinationsRoutes);
-// makeSchedule, removeSchedule, examinationDetails
-// app.use('/veterinary', veterinaryRoutes);
 
-app.listen(3000, () => console.log('Listening on port 3000!'));
+app.listen(3000, () => console.log('Listening on port 3000!')); // eslint-disable-line
