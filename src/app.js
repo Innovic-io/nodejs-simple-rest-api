@@ -13,4 +13,6 @@ app.use(bodyParser.json());
 app.use('/pets', petRoutes);
 app.use('/pets', examinationsRoutes);
 
-app.listen(3000, () => console.log('Listening on port 3000!')); // eslint-disable-line
+const port = process.env.PORT || 3000;
+
+app.listen(port, () => console.log(`Listening on port ${port}!`)); // eslint-disable-line
