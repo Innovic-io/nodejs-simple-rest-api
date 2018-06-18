@@ -45,6 +45,6 @@ Get single pet by ID
 Delete single pet by ID
 [DELETE] **http://localhost:3000/pets/1622147641**
 
-##Credits
+## Credits
 
 Ivana Fustar <ivanafustar@hotmail.com>
