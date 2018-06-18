@@ -25,14 +25,14 @@ const expectedPet = {
   examinations: [
     {
       id: 1314544864,
-      scheduled: 'date',
+      scheduled: 'scheduled',
       notes: 'text',
       report: 'text',
       finished: 'time',
     },
     {
       id: 1551547864,
-      scheduled: 'date',
+      scheduled: 'scheduled',
       notes: 'text',
     },
   ],

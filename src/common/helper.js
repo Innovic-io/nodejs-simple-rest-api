@@ -35,7 +35,25 @@ function generateID() {
   return Math.round(Math.random() * 10000000000);
 }
 
+function sortArray(sortKey, array) {
+  if (sortKey) {
+    let asc = true;
+
+    if (sortKey[0] === '-') {
+      asc = false;
+    }
+
+    array.sort((current, next) => {
+      if (current[sortKey] >= next[sortKey]) {
+        return (asc) ? 1 : -1;
+      }
+      return (asc) ? -1 : 1;
+    });
+  }
+}
+
 module.exports = {
   validateDTO,
   generateID,
+  sortArray,
 };

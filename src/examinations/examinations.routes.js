@@ -1,6 +1,6 @@
 const Router = require('express').Router();
 const { Examination } = require('./examinations.services');
-const { validateDTO } = require('../common/helper');
+const { validateDTO, sortArray } = require('../common/helper');
 const { validate } = require('../common/middleware');
 
 const examination = new Examination();
@@ -20,6 +20,9 @@ Router.get('/:petID/examinations/:eID', (req, res) => {
 Router.get('/:petID/examinations', (req, res) => {
   try {
     const item = examination.getAllExaminationsByPet(req.params.petID);
+    if('sort' in req.query) {
+      sortArray(req.query.sort, item);
+    }
 
     return res.status(200).json(item);
   } catch (e) {

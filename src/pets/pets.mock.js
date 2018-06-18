@@ -19,14 +19,14 @@ const pets = [
     examinations: [
       {
         id: 1314544864,
-        scheduled: 'date',
+        scheduled: '2017-9-3',
         notes: 'text',
         report: 'text',
         finished: 'time',
       },
       {
         id: 1551547864,
-        scheduled: 'date',
+        scheduled: '2016-7-5',
         notes: 'text',
       },
     ],
@@ -102,12 +102,12 @@ const pets = [
     examinations: [
       {
         id: 4425242564,
-        date: 'date ',
+        scheduled: '2012-6-16 ',
         details: 'text ',
       },
       {
         id: 4410242560,
-        date: 'another examination',
+        scheduled: '2012-8-30',
         details: 'something',
       },
     ],

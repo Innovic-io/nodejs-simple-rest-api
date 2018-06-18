@@ -1,10 +1,11 @@
 const { pets } = require('./pets.mock');
-const { validateDTO } = require('../common/helper');
+const { validateDTO, sortArray } = require('../common/helper');
 const Router = require('express').Router();
 const { PetService } = require('./pets.services');
+const { Examination } = require('../examinations/examinations.services');
 
 const petService = new PetService();
-
+const examination = new Examination();
 
 function splitQueryIntoSortAndFilter(requestQuery) {
   let sortKey;
@@ -29,23 +30,6 @@ function filterArray(filterQuery, array) {
   return array;
 }
 
-function sortArray(sortKey, array) {
-  if (sortKey) {
-    let asc = true;
-
-    if (sortKey[0] === '-') {
-      asc = false;
-    }
-
-    array.sort((current, next) => {
-      if (current[sortKey] >= next[sortKey]) {
-        return (asc) ? 1 : -1;
-      }
-      return (asc) ? -1 : 1;
-    });
-  }
-}
-
 Router.get('/', (req, res) => {
 
   const [sortKey, filterQuery] = splitQueryIntoSortAndFilter(req.query);
@@ -58,7 +42,12 @@ Router.get('/', (req, res) => {
 
 Router.get('/:id', (req, res) => {
   try {
+      const examinations = examination.getAllExaminationsByPet(req.params.id);
+    if('sort' in req.query) {
+      sortArray(req.query.sort, examinations);
+    }
     const item = petService.getSingle(req.params.id);
+    item.examinations = examinations;
 
     return res.status(200).json(item);
   } catch (e) {
